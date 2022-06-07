@@ -49,6 +49,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF378E61284F696100FD6A2D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9E8102847F56F0068CBF7 /* ViewController.swift */,
+				DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DF378E62284F698B00FD6A2D /* View+Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */,
+				DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */,
+				DFA9E822284934590068CBF7 /* ExtensionUIView.swift */,
+			);
+			path = "View+Cell";
+			sourceTree = "<group>";
+		};
+		DF378E63284F69AE00FD6A2D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9E82428493E2E0068CBF7 /* Ticket.swift */,
+				DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */,
+				DF378E5C284D52BD00FD6A2D /* LikeBase.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		DFA9E8002847F56F0068CBF7 = {
 			isa = PBXGroup;
 			children = (
@@ -70,17 +99,12 @@
 			children = (
 				DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */,
 				DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */,
-				DFA9E8102847F56F0068CBF7 /* ViewController.swift */,
 				DFA9E8152847F5720068CBF7 /* Assets.xcassets */,
 				DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */,
 				DFA9E81A2847F5720068CBF7 /* Info.plist */,
-				DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */,
-				DFA9E822284934590068CBF7 /* ExtensionUIView.swift */,
-				DFA9E82428493E2E0068CBF7 /* Ticket.swift */,
-				DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */,
-				DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */,
-				DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */,
-				DF378E5C284D52BD00FD6A2D /* LikeBase.swift */,
+				DF378E61284F696100FD6A2D /* ViewControllers */,
+				DF378E62284F698B00FD6A2D /* View+Cell */,
+				DF378E63284F69AE00FD6A2D /* Data */,
 			);
 			path = "It's time to travel";
 			sourceTree = "<group>";

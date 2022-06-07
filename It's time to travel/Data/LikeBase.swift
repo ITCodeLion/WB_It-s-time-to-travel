@@ -8,5 +8,5 @@
 import Foundation
 
 struct LikeBase {
-    static var likeBase: [String: Bool] = [:]
+    static var defaults = UserDefaults.standard
 }

@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol TicketInfoControllerProtocol: AnyObject {
-    func pressLike(button: UIButton, keyToken: String) //, index: IndexPath?)
-}
-
 class TicketInfoController: UIViewController {
-    
-    weak var delegate: TicketInfoControllerProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +16,6 @@ class TicketInfoController: UIViewController {
     }
     
     private func setupNavigatiomBar() {
-        //self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Детали перелета"
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
@@ -38,16 +31,15 @@ class TicketInfoController: UIViewController {
         if let info = infoData {
             view.setUp(info)
         }
-        view.delegate = self
         return view
     }()
     
     var infoData: Ticket?
     
     private func setupView() {
-        self.view.backgroundColor = #colorLiteral(red: 0.4714243412, green: 0.05966885388, blue: 0.5201253891, alpha: 1)
-        //self.setupButtons()
+        
         view.addSubview(scrollView)
+        view.backgroundColor = .white
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -55,7 +47,7 @@ class TicketInfoController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
+
         scrollView.addSubview(contentView)
         
         NSLayoutConstraint.activate([
@@ -65,25 +57,5 @@ class TicketInfoController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
-    }
-}
-// MARK: - для лайков
-extension TicketInfoController: TicketInfoViewProtocol {
-    func pressLike(button: UIButton, keyToken: String) {
-        delegate?.pressLike(button: button ,keyToken: keyToken)
-//        switch button.tintColor {
-//        case UIColor.purple:
-//            button.tintColor = .white
-//            LikeBase.likeBase[keyToken] = false
-//            //delegate?.pressLike()
-//            print("333")
-//        case UIColor.white:
-//            button.tintColor = .purple
-//            LikeBase.likeBase[keyToken] = true
-//            //delegate?.pressLike()
-//            print("444")
-//        default:
-//            return
-//        }
     }
 }

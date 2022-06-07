@@ -11,14 +11,13 @@ class ViewController: UIViewController {
     
     private var tickets = [Ticket]()
     
-    
-    
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: view.bounds, style: .plain)//.zero, style: .grouped)
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .systemGray5
+        tableView.backgroundColor = .clear
+        
         tableView.register(AirTicketCell.self, forCellReuseIdentifier: AirTicketCell.identifier)
         return tableView
     }()
@@ -26,48 +25,66 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
-        
-        //
+    
         let urlString = "https://travel.wildberries.ru/statistics/v1/cheap"
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
-                //
                 parse(json: data)
             }
         }
-        //
         layout()
-        
-        
+    }
+    
+    lazy var activityView: UIActivityIndicatorView = {
+        let activityView: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        activityView.hidesWhenStopped = true
+        activityView.startAnimating()
+        view.addSubview(activityView)
+        return activityView
+    }()
+    
+    func setGradientBackground() {
+        let colorTop =  UIColor(red: 72.0/255.0, green: 17.0/255.0, blue: 115.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 203.0/255.0, green: 17.0/255.0, blue: 171.0/255.0, alpha: 1.0).cgColor
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        setGradientBackground()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        sleep(1)
+        self.activityView.stopAnimating()
     }
 
     private func setupNavigationBar() {
         
-        //self.navigationController?.navigationBar.prefersLargeTitles = false
-        //self.navigationController?.navigationBar.isHidden = false
-        //self.navigationController?.navigationBar.isTranslucent = true
-        //self.navigationController?.navigationBar.barTintColor = .black
-        title = "WB voyage"
-        let textAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        let navBarApp = UINavigationBarAppearance()
+        navBarApp.configureWithOpaqueBackground()
+        navBarApp.backgroundColor = UIColor(named: "CB11AB")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Назад", style: .plain, target: nil, action: nil)
+        title = "WB voyage"
+        navBarApp.largeTitleTextAttributes = [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+        navBarApp.titleTextAttributes = [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+        self.navigationController?.navigationBar.standardAppearance = navBarApp
         self.navigationController?.navigationBar.isTranslucent = false
-        //self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
         if let jsonTickets = try? decoder.decode(TicketsAPI.self, from: json) {
             tickets = jsonTickets.data
-            //
-            print("tickets")
         }
     }
     
@@ -81,6 +98,13 @@ class ViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        self.activityView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.activityView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.activityView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
+        
     }
 }
 
@@ -91,22 +115,17 @@ extension ViewController: UITableViewDataSource {
         return tickets.count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AirTicketCell.identifier, for: indexPath) as! AirTicketCell
-        cell.delegate = self
         
         if !tickets.isEmpty {
             cell.setUpCell(self.tickets[indexPath.row])
+            cell.tapHandler = { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
-//        if
-//        cell.setUpCell(self.tickets[indexPath.row])
-        
-        //let ind = indexPath
+        cell.backgroundColor = .clear
         return cell
     }
 }
@@ -118,44 +137,10 @@ extension ViewController: UITableViewDelegate {
         UITableView.automaticDimension
     }
 
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = TicketInfoController()
         detailVC.infoData = tickets[indexPath.item]
-        //detailVC.contentView.delegate = self
-        detailVC.delegate = self
-        //paths =
         navigationController?.pushViewController(detailVC, animated: true)
-        
-        
     }
 }
-// MARK: - для лайков
-extension ViewController: AirTicketCellProtocol, TicketInfoControllerProtocol {
-//    func pressLike(button: UIButton, keyToken: String) {
-//        <#code#>
-//    }
-    //cell: AirTicketCell,
-    func pressLike(button: UIButton, keyToken: String) {
-        
-        
-        
-        switch button.tintColor {
-        case UIColor.purple:
-            button.tintColor = .white
-            LikeBase.likeBase[keyToken]?.toggle()
-            print("111")
-        case UIColor.white:
-            button.tintColor = .purple
-            LikeBase.likeBase[keyToken]?.toggle()
-            print("222")
-        default:
-            return
-        }
-    }
-}
-

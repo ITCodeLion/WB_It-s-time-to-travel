@@ -19,5 +19,3 @@ struct Ticket: Codable {
     var searchToken: String
     
 }
-
-//startCity":"РњРѕСЃРєРІР°","startCityCode":"mow","endCity":"РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі","endCityCode":"led","startDate":"2022-07-17T00:00:00Z","endDate":"2022-07-24T00:00:00Z","price":2690,"searchToken":"MOW0906PEE1606Y100"}]}

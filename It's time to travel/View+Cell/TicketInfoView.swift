@@ -109,7 +109,7 @@ class TicketInfoView: UIView {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .systemGray5
         button.addTarget(self, action: #selector(tapLike), for: .touchUpInside)
         return button
     }()
@@ -146,27 +146,10 @@ class TicketInfoView: UIView {
         arrow.tintColor = .purple
         return arrow
     }()
-    
-//    private lazy var stackFrom: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .vertical
-//        stack.distribution = .fill
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//        return stack
-//    }()
-//
-//    private lazy var stackTo: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .vertical
-//        stack.distribution = .fill
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//        return stack
-//    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layout()
-        self.backgroundColor = .white
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -182,6 +165,8 @@ class TicketInfoView: UIView {
         return  dateFormatter.string(from: date!)
     }
     
+    private var model: Ticket?
+    public var tapHandler: (() -> Void)?
     func setUp(_ infoData: Ticket) {
         cityFromLabel.text = infoData.startCity
         cityToLabel.text = infoData.endCity
@@ -190,10 +175,14 @@ class TicketInfoView: UIView {
         priceLabel.text = "\(String(infoData.price)) RUB"
         cityFromCodeLabel.text = "Код города: \(infoData.startCityCode)"
         cityToCodeLabel.text = "Код города: \(infoData.endCityCode)"
-        guard let key = LikeBase.likeBase[infoData.searchToken] else { return }
+
+        keyToken = infoData.searchToken
+        let key = LikeBase.defaults.bool(forKey: infoData.searchToken)
+
         if key {
-            likeButton.tintColor = .purple
-            keyToken = infoData.searchToken
+            likeButton.tintColor =  #colorLiteral(red: 0.7960784314, green: 0.06666666667, blue: 0.6705882353, alpha: 1)
+        } else {
+            likeButton.tintColor = .systemGray5
         }
     }
     
@@ -201,7 +190,7 @@ class TicketInfoView: UIView {
     
     private func layout() {
         [logoTicket, cityFromCodeLabel, cityFromLabel, cityToCodeLabel, cityToLabel, departureLabel, arrivalLabel, arrowImage, fromImage, toImage, textLabel, likeButton, priceLabel].forEach { self.addSubview($0) }
-        // likeButton, priceLabel,
+
         let inset: CGFloat = 10
 
         NSLayoutConstraint.activate([
@@ -221,7 +210,6 @@ class TicketInfoView: UIView {
         NSLayoutConstraint.activate([
             arrowImage.centerYAnchor.constraint(equalTo: cityFromLabel.centerYAnchor),
             arrowImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            //arrowImage.leadingAnchor.constraint(equalTo: cityFromLabel.trailingAnchor, constant: inset),
             arrowImage.heightAnchor.constraint(equalToConstant: inset * 3),
             arrowImage.widthAnchor.constraint(equalToConstant: inset * 3)
         ])
@@ -247,18 +235,14 @@ class TicketInfoView: UIView {
         
         NSLayoutConstraint.activate([
             fromImage.topAnchor.constraint(equalTo: cityFromCodeLabel.bottomAnchor, constant: (inset/2)),
-            //fromImage.centerYAnchor.constraint(equalTo: departureLabel.centerYAnchor),
             fromImage.leadingAnchor.constraint(equalTo: cityFromCodeLabel.leadingAnchor),
-            //fromImage.bottomAnchor.constraint(equalTo: departureLabel.bottomAnchor),
             fromImage.heightAnchor.constraint(equalToConstant: 16),
-            fromImage.widthAnchor.constraint(equalTo: fromImage.heightAnchor)//(equalTo: fromImage.heightAnchor)
+            fromImage.widthAnchor.constraint(equalTo: fromImage.heightAnchor)
         ])
 
         NSLayoutConstraint.activate([
             departureLabel.centerYAnchor.constraint(equalTo: fromImage.centerYAnchor),
-            //departureLabel.topAnchor.constraint(equalTo: cityFromCodeLabel.bottomAnchor, constant: (inset / 2)),
-            departureLabel.leadingAnchor.constraint(equalTo: fromImage.trailingAnchor, constant: (inset / 5))//,
-            //departureLabel.trailingAnchor.constraint(equalTo: cityFromLabel.trailingAnchor)
+            departureLabel.leadingAnchor.constraint(equalTo: fromImage.trailingAnchor, constant: (inset / 5))
         ])
         
         NSLayoutConstraint.activate([
@@ -270,8 +254,6 @@ class TicketInfoView: UIView {
 
         NSLayoutConstraint.activate([
             arrivalLabel.centerYAnchor.constraint(equalTo: toImage.centerYAnchor),
-            //arrivalLabel.topAnchor.constraint(equalTo: cityToCodeLabel.bottomAnchor, constant: inset),
-            //arrivalLabel.leadingAnchor.constraint(equalTo: toImage.trailingAnchor, constant: inset/2),
             arrivalLabel.leadingAnchor.constraint(equalTo: toImage.trailingAnchor, constant: (inset / 5))
         ])
         
@@ -279,7 +261,6 @@ class TicketInfoView: UIView {
             textLabel.topAnchor.constraint(equalTo: departureLabel.bottomAnchor, constant: inset),
             textLabel.leadingAnchor.constraint(equalTo: cityFromLabel.leadingAnchor),
             textLabel.trailingAnchor.constraint(equalTo: cityToLabel.trailingAnchor)//,
-            //textLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -inset)
         ])
 
         NSLayoutConstraint.activate([
@@ -296,23 +277,13 @@ class TicketInfoView: UIView {
         ])
     }
     
-    //var likePressed: Bool = false
-    
     @objc private func tapLike() {
-//        switch likeButton.tintColor {
-//        case UIColor.purple:
-//            likeButton.tintColor = .white
-//            LikeBase.likeBase[keyToken] = false
-//            delegate?.pressLike()
-//            print("111")
-//        case UIColor.white:
-//            likeButton.tintColor = .purple
-//            LikeBase.likeBase[keyToken] = true
-//            delegate?.pressLike()
-//            print("222")
-//        default:
-//            return
-//        }
-        delegate?.pressLike(button: likeButton ,keyToken: keyToken)
+        if LikeBase.defaults.bool(forKey: keyToken) {
+            likeButton.tintColor = .systemGray5
+            LikeBase.defaults.set(false, forKey: keyToken)
+        } else {
+            likeButton.tintColor =  #colorLiteral(red: 0.7960784314, green: 0.06666666667, blue: 0.6705882353, alpha: 1)
+            LikeBase.defaults.set(true, forKey: keyToken)
+        }
     }
 }

@@ -7,19 +7,13 @@
 
 import UIKit
 
-protocol AirTicketCellProtocol: AnyObject {
-    func pressLike(button: UIButton, keyToken: String)
-} //cell: AirTicketCell,
-
 class AirTicketCell: UITableViewCell {
-    
-    weak var delegate: AirTicketCellProtocol?
     
     private let viewTicket: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .purple
-        view.alpha = 0.3
+        view.backgroundColor = .white
+        view.alpha = 0.7
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 2
         view.layer.borderColor = UIColor.black.cgColor
@@ -27,7 +21,7 @@ class AirTicketCell: UITableViewCell {
         return view
     }()
     
-    private let logoTicket: UIImageView = { //imagePostView
+    private let logoTicket: UIImageView = {
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.backgroundColor = .black
@@ -88,7 +82,7 @@ class AirTicketCell: UITableViewCell {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .systemGray5
         button.addTarget(self, action: #selector(tapLike), for: .touchUpInside)
         return button
     }()
@@ -113,7 +107,6 @@ class AirTicketCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.layout()
-        self.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -128,8 +121,11 @@ class AirTicketCell: UITableViewCell {
         return  dateFormatter.string(from: date!)
     }
     
+    private var model: Ticket?
+    public var tapHandler: (() -> Void)?
+    
     func setUpCell(_ infoData: Ticket) {
-        
+        model = infoData
         cityFromLabel.text = infoData.startCity
         cityToLabel.text = infoData.endCity
         departureLabel.text = DateFromWeb(infoData.startDate)
@@ -137,15 +133,12 @@ class AirTicketCell: UITableViewCell {
         priceLabel.text = "\(String(infoData.price)) RUB"
         logoTicket.image = UIImage(named: "WB")
         
-        LikeBase.likeBase[infoData.searchToken] = likePressed
-        keyBase = infoData.searchToken
+        likePressed = LikeBase.defaults.bool(forKey: infoData.searchToken)
     }
-    
-    private var keyBase = ""
     
     private func layout() {
         [viewTicket, logoTicket, cityFromLabel, cityToLabel, departureLabel, arrivalLabel, likeButton, priceLabel, arrowImage].forEach { contentView.addSubview($0) }
-        
+
         let inset: CGFloat = 10
         
         NSLayoutConstraint.activate([
@@ -170,7 +163,6 @@ class AirTicketCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            //arrowImage.topAnchor.constraint(equalTo: logoTicket.topAnchor),
             arrowImage.centerYAnchor.constraint(equalTo: cityFromLabel.centerYAnchor),
             arrowImage.leadingAnchor.constraint(equalTo: cityFromLabel.trailingAnchor, constant: inset),
             arrowImage.heightAnchor.constraint(equalToConstant: 20),
@@ -211,29 +203,17 @@ class AirTicketCell: UITableViewCell {
         ])
     }
     
-    private var likePressed: Bool = false
+    private var likePressed: Bool = false {
+        didSet {
+            likeButton.tintColor = likePressed ? #colorLiteral(red: 0.7960784314, green: 0.06666666667, blue: 0.6705882353, alpha: 1) : .systemGray5
+        }
+    }
     
     @objc private func tapLike() {
-        //delegate?.tapAction()
-//        if !likePressed {
-//            likePressed = true
-//            likeButton.tintColor = .purple
-//        } else {
-//            likePressed = false
-//            likeButton.tintColor = .white
-//        }
+        guard let model = model else { return }
         
-        
-//        guard let like = LikeBase.likeBase[keyBase] else { return }
-//        if !like {
-//            LikeBase.likeBase[keyBase] = true
-//            likeButton.tintColor = .purple
-//        } else {
-//            LikeBase.likeBase[keyBase] = false
-//            likeButton.tintColor = .white
-//        }
-        
-        delegate?.pressLike(button: likeButton ,keyToken: keyBase)
-        //(cell: self, 
+        likePressed = !likePressed
+        LikeBase.defaults.set(likePressed, forKey: model.searchToken)
+        tapHandler?()
     }
 }
