@@ -16,7 +16,6 @@
 		DFA9E8212847FAEE0068CBF7 /* AirTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */; };
 		DFA9E823284934590068CBF7 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E822284934590068CBF7 /* ExtensionUIView.swift */; };
 		DFA9E82528493E2E0068CBF7 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82428493E2E0068CBF7 /* Ticket.swift */; };
-		DFA9E82728494C6E0068CBF7 /* TiketsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */; };
 		DFA9E829284CC5210068CBF7 /* TicketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */; };
 		DFA9E82B284D08990068CBF7 /* TicketInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirTicketCell.swift; sourceTree = "<group>"; };
 		DFA9E822284934590068CBF7 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		DFA9E82428493E2E0068CBF7 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
-		DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiketsAPI.swift; sourceTree = "<group>"; };
 		DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoView.swift; sourceTree = "<group>"; };
 		DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,10 +70,27 @@
 			isa = PBXGroup;
 			children = (
 				DFA9E82428493E2E0068CBF7 /* Ticket.swift */,
-				DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */,
 				DF378E5C284D52BD00FD6A2D /* LikeBase.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		DF378E64284FD59000FD6A2D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */,
+				DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DF378E65284FD5AB00FD6A2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */,
+				DFA9E8152847F5720068CBF7 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DFA9E8002847F56F0068CBF7 = {
@@ -97,11 +112,9 @@
 		DFA9E80B2847F56F0068CBF7 /* It's time to travel */ = {
 			isa = PBXGroup;
 			children = (
-				DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */,
-				DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */,
-				DFA9E8152847F5720068CBF7 /* Assets.xcassets */,
-				DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */,
 				DFA9E81A2847F5720068CBF7 /* Info.plist */,
+				DF378E64284FD59000FD6A2D /* App */,
+				DF378E65284FD5AB00FD6A2D /* Supporting Files */,
 				DF378E61284F696100FD6A2D /* ViewControllers */,
 				DF378E62284F698B00FD6A2D /* View+Cell */,
 				DF378E63284F69AE00FD6A2D /* Data */,
@@ -185,7 +198,6 @@
 				DFA9E80D2847F56F0068CBF7 /* AppDelegate.swift in Sources */,
 				DFA9E829284CC5210068CBF7 /* TicketInfoView.swift in Sources */,
 				DF378E5D284D52BD00FD6A2D /* LikeBase.swift in Sources */,
-				DFA9E82728494C6E0068CBF7 /* TiketsAPI.swift in Sources */,
 				DFA9E8212847FAEE0068CBF7 /* AirTicketCell.swift in Sources */,
 				DFA9E80F2847F56F0068CBF7 /* SceneDelegate.swift in Sources */,
 				DFA9E823284934590068CBF7 /* ExtensionUIView.swift in Sources */,

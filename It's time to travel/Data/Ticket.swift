@@ -7,6 +7,10 @@
 
 import UIKit
 
+struct TicketData: Codable {
+    var data: [Ticket]
+}
+
 struct Ticket: Codable {
     
     var startCity: String
@@ -17,5 +21,4 @@ struct Ticket: Codable {
     var endDate: String
     var price: Int
     var searchToken: String
-    
 }

@@ -137,7 +137,15 @@ class AirTicketCell: UITableViewCell {
     }
     
     private func layout() {
-        [viewTicket, logoTicket, cityFromLabel, cityToLabel, departureLabel, arrivalLabel, likeButton, priceLabel, arrowImage].forEach { contentView.addSubview($0) }
+        [viewTicket,
+         logoTicket,
+         cityFromLabel,
+         cityToLabel,
+         departureLabel,
+         arrivalLabel,
+         likeButton,
+         priceLabel,
+         arrowImage].forEach { contentView.addSubview($0) }
 
         let inset: CGFloat = 10
         
@@ -159,7 +167,6 @@ class AirTicketCell: UITableViewCell {
             cityFromLabel.topAnchor.constraint(equalTo: logoTicket.topAnchor),
             cityFromLabel.leadingAnchor.constraint(equalTo: logoTicket.trailingAnchor, constant: inset),
             cityFromLabel.heightAnchor.constraint(equalToConstant: 40),
-
         ])
         
         NSLayoutConstraint.activate([
@@ -167,7 +174,6 @@ class AirTicketCell: UITableViewCell {
             arrowImage.leadingAnchor.constraint(equalTo: cityFromLabel.trailingAnchor, constant: inset),
             arrowImage.heightAnchor.constraint(equalToConstant: 20),
             arrowImage.widthAnchor.constraint(equalToConstant: 20)
-
         ])
         
         NSLayoutConstraint.activate([

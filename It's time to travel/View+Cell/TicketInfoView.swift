@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol TicketInfoViewProtocol: AnyObject {
-    func pressLike(button: UIButton, keyToken: String)
-}
-
 class TicketInfoView: UIView {
-    
-    weak var delegate: TicketInfoViewProtocol?
     
     private let logoTicket: UIImageView = {
         let logo = UIImageView()
@@ -189,7 +183,19 @@ class TicketInfoView: UIView {
     private var keyToken: String = ""
     
     private func layout() {
-        [logoTicket, cityFromCodeLabel, cityFromLabel, cityToCodeLabel, cityToLabel, departureLabel, arrivalLabel, arrowImage, fromImage, toImage, textLabel, likeButton, priceLabel].forEach { self.addSubview($0) }
+        [logoTicket,
+         cityFromCodeLabel,
+         cityFromLabel,
+         cityToCodeLabel,
+         cityToLabel,
+         departureLabel,
+         arrivalLabel,
+         arrowImage,
+         fromImage,
+         toImage,
+         textLabel,
+         likeButton,
+         priceLabel].forEach { self.addSubview($0) }
 
         let inset: CGFloat = 10
 
