@@ -36,6 +36,7 @@
       "size" : "60x60"
     },
     {
+      "filename" : "WB_icon1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -81,6 +82,7 @@
       "size" : "76x76"
     },
     {
+      "filename" : "WB_icon.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"

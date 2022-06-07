@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF378E5D284D52BD00FD6A2D /* LikeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF378E5C284D52BD00FD6A2D /* LikeBase.swift */; };
 		DFA9E80D2847F56F0068CBF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */; };
 		DFA9E80F2847F56F0068CBF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */; };
 		DFA9E8112847F56F0068CBF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E8102847F56F0068CBF7 /* ViewController.swift */; };
-		DFA9E8142847F56F0068CBF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA9E8122847F56F0068CBF7 /* Main.storyboard */; };
 		DFA9E8162847F5720068CBF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA9E8152847F5720068CBF7 /* Assets.xcassets */; };
 		DFA9E8192847F5720068CBF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */; };
+		DFA9E8212847FAEE0068CBF7 /* AirTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */; };
+		DFA9E823284934590068CBF7 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E822284934590068CBF7 /* ExtensionUIView.swift */; };
+		DFA9E82528493E2E0068CBF7 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82428493E2E0068CBF7 /* Ticket.swift */; };
+		DFA9E82728494C6E0068CBF7 /* TiketsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */; };
+		DFA9E829284CC5210068CBF7 /* TicketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */; };
+		DFA9E82B284D08990068CBF7 /* TicketInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF378E5C284D52BD00FD6A2D /* LikeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeBase.swift; sourceTree = "<group>"; };
 		DFA9E8092847F56F0068CBF7 /* It's time to travel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "It's time to travel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DFA9E8102847F56F0068CBF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DFA9E8132847F56F0068CBF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DFA9E8152847F5720068CBF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFA9E8182847F5720068CBF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFA9E81A2847F5720068CBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirTicketCell.swift; sourceTree = "<group>"; };
+		DFA9E822284934590068CBF7 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
+		DFA9E82428493E2E0068CBF7 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiketsAPI.swift; sourceTree = "<group>"; };
+		DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoView.swift; sourceTree = "<group>"; };
+		DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +71,16 @@
 				DFA9E80C2847F56F0068CBF7 /* AppDelegate.swift */,
 				DFA9E80E2847F56F0068CBF7 /* SceneDelegate.swift */,
 				DFA9E8102847F56F0068CBF7 /* ViewController.swift */,
-				DFA9E8122847F56F0068CBF7 /* Main.storyboard */,
 				DFA9E8152847F5720068CBF7 /* Assets.xcassets */,
 				DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */,
 				DFA9E81A2847F5720068CBF7 /* Info.plist */,
+				DFA9E8202847FAEE0068CBF7 /* AirTicketCell.swift */,
+				DFA9E822284934590068CBF7 /* ExtensionUIView.swift */,
+				DFA9E82428493E2E0068CBF7 /* Ticket.swift */,
+				DFA9E82628494C6D0068CBF7 /* TiketsAPI.swift */,
+				DFA9E828284CC5210068CBF7 /* TicketInfoView.swift */,
+				DFA9E82A284D08990068CBF7 /* TicketInfoController.swift */,
+				DF378E5C284D52BD00FD6A2D /* LikeBase.swift */,
 			);
 			path = "It's time to travel";
 			sourceTree = "<group>";
@@ -127,7 +145,6 @@
 			files = (
 				DFA9E8192847F5720068CBF7 /* LaunchScreen.storyboard in Resources */,
 				DFA9E8162847F5720068CBF7 /* Assets.xcassets in Resources */,
-				DFA9E8142847F56F0068CBF7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +155,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA9E82B284D08990068CBF7 /* TicketInfoController.swift in Sources */,
 				DFA9E8112847F56F0068CBF7 /* ViewController.swift in Sources */,
+				DFA9E82528493E2E0068CBF7 /* Ticket.swift in Sources */,
 				DFA9E80D2847F56F0068CBF7 /* AppDelegate.swift in Sources */,
+				DFA9E829284CC5210068CBF7 /* TicketInfoView.swift in Sources */,
+				DF378E5D284D52BD00FD6A2D /* LikeBase.swift in Sources */,
+				DFA9E82728494C6E0068CBF7 /* TiketsAPI.swift in Sources */,
+				DFA9E8212847FAEE0068CBF7 /* AirTicketCell.swift in Sources */,
 				DFA9E80F2847F56F0068CBF7 /* SceneDelegate.swift in Sources */,
+				DFA9E823284934590068CBF7 /* ExtensionUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DFA9E8122847F56F0068CBF7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DFA9E8132847F56F0068CBF7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DFA9E8172847F5720068CBF7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,7 +309,6 @@
 				INFOPLIST_FILE = "It's time to travel/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +335,6 @@
 				INFOPLIST_FILE = "It's time to travel/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
